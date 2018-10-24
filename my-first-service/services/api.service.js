@@ -15,7 +15,10 @@ module.exports = {
 			whitelist: [
 				// Access to any actions in all services
 				"*"
-			]
+			],
+			aliases: {
+				"REST products": "products"
+			}
 		}]
 
 	}
