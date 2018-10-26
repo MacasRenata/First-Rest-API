@@ -1,0 +1,89 @@
+     |||||||||||||| Resumo Docker e Microservices com NodeJS  ||||||||||||||||||||||||||||
+
+
+
+ Simplificando, os contêineres estão executando instâncias de imagens de contêiner
+
+
+ Esse acesso compartilhado aos recursos do sistema operacional host permite a eficiência do desempenho e dos recursos não encontrados em outros métodos de virtualização.
+
+
+ Os contêineres oferecem várias vantagens importantes para os desenvolvedores:
+
++ Leve e eficiente em recursos :: Em comparação com as VMs, que geram cópias de seu sistema operacional host para cada aplicativo ou processo, os contêineres têm um impacto significativamente menor na memória, no uso da CPU e no espaço em disco.
+
++ Imutável :: Recipientes são gerados a partir de uma única fonte de verdade, uma imagem. Se alterações forem confirmadas em uma imagem, uma nova imagem será criada . Isso faz com que as alterações na imagem do contêiner sejam fáceis de acompanhar e as reversões de implantação sejam intuitivas. A reprodutibilidade e a estabilidade dos contêineres ajudam as equipes de desenvolvimento a evitar desvios de configuração, tornando as coisas como teste de versão e espelhamento de ambientes de desenvolvimento e produção muito mais simples.
+
++ Portátil :: A natureza isolada e autoconfiante dos contêineres os torna uma ótima opção para aplicativos que precisam operar em uma série de serviços, plataformas e ambientes. Eles podem ser executados no Linux, Windows e macOS. Forneça-os a partir da nuvem, no local ou onde quer que sua infra-estrutura determine.
+
++ Escalável e Altamente Disponível :: Os contêineres são facilmente reproduzíveis e podem ser feitos para responder dinamicamente às demandas de tráfego, com serviços de orquestração, como Instâncias de Contêiner do Azure , Google Cloud Engine e Amazon ECS, tornando mais simples do que nunca gerar ou remover contêineres de sua infraestrutura.
+
+
++++ MICROSERVICE E ARQUITETURAS DISTRIBUÍDAS
+
+Uma frase comum no desenvolvimento de microsserviço é “faça uma coisa e faça bem”, e isso se alinha firmemente aos contêineres de aplicativos. Os contêineres oferecem uma ótima maneira de envolver microsserviços e isolá-los do ambiente de aplicativos mais amplo. Isso é muito útil quando se deseja atualizar (micro) serviços específicos de um conjunto de aplicativos sem atualizar o aplicativo inteiro.
+
+
+
++TESTE A / B
+
+Os contêineres facilitam a implantação de várias versões do mesmo aplicativo. Quando acoplados a lançamentos incrementais , os contêineres podem manter seu aplicativo em um estado dinâmico e responsivo para testes. Quer testar um novo recurso de desempenho? Gere um novo contêiner, adicione algumas atualizações, direcione 1% do tráfego para ele e colete feedback sobre o usuário e o desempenho. À medida que as alterações se estabilizam e sua equipe decide aplicá-las ao aplicativo em geral, os contêineres podem tornar essa transição suave e eficiente.
+
+
+
++++++++++++++++++++++++++++++++++Contêineres e Node.js+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Devido à adequação dos contêineres de aplicativos para ambientes de aplicativos focados, o Node.js é sem dúvida o melhor tempo de execução para conteinerização.
+
+Dependências explícitas. Os aplicativos Containerized Node.js podem bloquear árvores de dependência e manter arquivos stable package.json , package-lock.json ou npm-shrinkwrap.json .
+
+-- Inicialização Rápida e Reiniciar:: Os contêineres são leves e inicializam rapidamente, tornando-os um par estratégico para aplicativos Node.js. Um dos recursos mais elogiados do Node.js é seu impressionante tempo de inicialização. Esse desempenho de inicialização robusto é encerrado, processos reiniciados rapidamente e aplicativos estabilizados; Containerization fornece uma solução escalonável para manter esse desempenho.
+
+-- Dimensionamento no nível do processo :: Semelhante à melhor prática do Node.js de girar mais processos em vez de mais encadeamentos, um ambiente contêinerizado aumentará o número de processos aumentando o número de contêineres. Esse dimensionamento horizontal cria redundância e ajuda a manter os aplicativos altamente disponíveis, sem o custo significativo de recursos de uma nova VM por processo.
+
+
+
+__________________________________________________________________________________________________________________________________________
+
+
+
+                                                            Visão geral do Docker
+
+
+O Docker é um sistema de arquivos em camadas para o envio de imagens e permite que as organizações abstraçam seus aplicativos de sua infraestrutura.
+
+Com o Docker, as imagens são geradas por meio de um Dockerfile . Este arquivo fornece configurações e comandos para gerar imagens programaticamente.
+
+Cada comando do Docker em um Dockerfile adiciona uma 'camada'. Quanto mais camadas, maior o contêiner resultante.
+
+Aqui está um exemplo simples do Dockerfile:
+
+1    FROM node:8
+2 
+3    WORKDIR /home/nodejs/app
+4
+5    COPY . .
+6    RUN npm install --production
+7
+8    CMD [“node”, “index.js”]
+
+
+
+O FROM comando designa a imagem base que será usada; neste caso, é a imagem da linha de lançamento do Node.js 8 LTS.
+
+O RUN comando toma os comandos bash como seus argumentos. 
+
+Na linha 2, estamos criando um diretório para colocar o aplicativo Node.js. 
+
+A linha 3 permite ao Docker saber que o diretório de trabalho para cada comando após a linha 3 será o diretório do aplicativo. 
+
+A linha 5 copia tudo o diretório atual para o diretório atual da imagem, que é /home/nodejs/apppreviamente definido pelo comando WORKDIR, como no 3. 
+
+Na linha 6, estamos configurando a instalação de produção.
+
+Finalmente, na linha 8, passamos ao Docker um comando e um argumento para executar o aplicativo Node.js dentro do contêiner.
+
+
+_____________________________________________________________________________________________________
+
+
