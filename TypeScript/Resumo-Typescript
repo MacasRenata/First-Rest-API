@@ -1,0 +1,229 @@
+
+https://ccstore-stage-zdfa.oracleoutsourcing.com/home-lista
+
+
+ <a class="m-lista-criar" data-bind="ccLink: 'home-lista', click: up">Criar lista</a>
+
+
+
+Sem acesso na rede Compasso:::
+
+ https://articles.microservices.com/nodejs-microservices-from-zero-to-hero-pt1-279548cb4080
+ https://itnext.io/javascript-promises-with-node-js-e8ca827e0ea3
+
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+			::::::::: TypeScript
+
+
+1. install : npm install -g typescript
+
+
+2. version : tsc -v
+
+
+3. Configuration :  
+
+
+	tsc main.ts
+
+	tsc main.ts worker.ts
+
+	tsc *.ts
+
+	tsc main.ts --watch
+
+	Usuários mais avançados do TypeScript também podem criar um arquivo tsconfig.json , consistindo em várias configurações de compilação
+
+4. Types variables:
+
+
+	Aqui estão alguns dos tipos de dados mais usados:
+
+	Number - Todos os valores numéricos são representados pelo tipo de número, não há definições separadas para números inteiros, flutuantes ou outros.
+	String - O tipo de texto, assim como nas strings JS vanilla, pode ser rodeado por 'aspas simples' ou 'aspas duplas'.
+	Boolean - trueou false, usando 0 e 1, causará um erro de compilação.
+	Any - Uma variável com esse tipo pode ter seu valor definido como uma string, número ou qualquer outra coisa.
+	Arrays - possui duas sintaxes possíveis: my_arr: number[];ou my_arr: Array<number>.
+	Void - Usado em funções que não retornam nada.
+
+
+5 . Interfaces
+
+
+		Interfaces são usadas para verificar se um objeto se ajusta a uma determinada estrutura.
+		A ordem das propriedades NÃO importa. 
+		Nós só precisamos que as propriedades necessárias estejam presentes e sejam do tipo certo .
+
+		No exemplo abaixo, definimos uma interface simples para verificar os argumentos de uma função:
+
+		__________________________________________________________________________________________________________________________________
+		// Aqui definimos nossa interface Food, suas propriedades e seus tipos. 
+		interface de comida { nome : string; 
+		    calorias: número; 
+		} // Dizemos à nossa função para esperar um objeto que atenda à interface Food. 
+		// Desta forma, sabemos que as propriedades que precisamos estarão sempre disponíveis. function speak ( food: Food ): void {
+		   console .log ( "Nossa" + food.name + "tem" + food.calories + "calorias" ); 
+		} // Definimos um objeto que possui todas as propriedades que a interface Food espera. 
+		// Observe que os tipos serão inferidos automaticamente.
+		    
+		***
+
+
+		var ice_cream = {
+		   name : "ice cream" , 
+		   calorias : 200 
+		} 
+
+		speak (ice_cream);
+		__________________________________________________________________________________________________________________________________
+
+
+
+6. Class 
+
+
+		Exemplo de uma classe simples em typescript ::
+		___________________________________________________________________________________________________________________________________________________
+		class  Menu  {
+		   // Nossas propriedades: 
+		  // Por padrão, elas são públicas, mas também podem ser privadas ou protegidas. 
+		  items: Array <string>;  // Os itens no menu, um array de strings. 
+		  páginas: number;         // Quantas páginas serão o menu, um número. 
+
+		  // Um ​​construtor simples. 
+		  construtor (item_list: Array <string>, total_pages: number) {
+		     // Esta palavra-chave é obrigatória. 
+		    this .items = item_list;    
+		    this .pages = total_pages; 
+		  } // 
+		  Lista de métodos (): void {
+		     console .log ( "Nosso menu para hoje:"
+
+		  );
+		    para ( var i = 0 ; i < esta .items.length; i ++) {
+		       consola log ( esta .items [i]); 
+		    } 
+		  } 
+
+		} // Cria uma nova instância da classe Menu. var sundayMenu = novo Menu ([ "panquecas" , "waffles" , "suco de laranja" ], 1 ); // Chame o método list. 
+		sundayMenu.list ();
+		_____________________________________________________________________________________________________________________________________________________
+
+
+		Exemplo classe com herança :: 
+
+		___________________________________________________________________________________________________________________________________________________________
+		class  HappyMeal  extends  Menu  {
+		   // Propriedades são herdadas 
+
+		  // Um ​​novo construtor deve ser definido. 
+		  construtor (item_list: Array <string>, total_pages: number) {
+
+		     // Neste caso, queremos o mesmo construtor exato que a classe pai (Menu), 
+		    // Para copiá-lo automaticamente, podemos chamar super () - uma referência ao construtor do pai. 
+		    super (item_list, total_pages); 
+
+		  } // Assim como as propriedades, os métodos são herdados do pai. 
+		  // No entanto, queremos sobrescrever a função list () para que possamos redefini-la. 
+		  list (): void {
+
+		     console .log ( "Nosso menu especial para crianças:"
+
+		  
+		  );
+		    para ( var i = 0 ; i < esta .items.length; i ++) {
+		       consola log ( esta .items [i]); 
+		    } 
+
+		  } 
+		} // Crie uma nova instância da classe HappyMeal. var menu_for_children = novo HappyMeal ([ "candy" , "drink" , "brinquedo" ], 1 ); // Desta vez, a mensagem de log começará com a introdução especial. 
+		menu_for_children.list ();
+		___________________________________________________________________________________________________________________________________________________________
+
+
+7. Generics
+
+
+		Os genéricos são modelos que permitem que a mesma função aceite argumentos de vários tipos diferentes. 
+
+		Um exemplo rápido seria um script que recebe um argumento e retorna um array contendo o mesmo argumento.
+
+		__________________________________________________________________________________________________________________________
+		// O <T> após o nome da função simboliza que é uma função genérica. 
+		// Quando chamamos a função, todas as ocorrências de T serão substituídas pelo tipo real fornecido. 
+
+		// Recebe um argumento do tipo T, 
+		// Retorna um array do tipo T. 
+
+		function  genericFunc < T > ( argumento: T ): T [] {    
+		   var arrayOfT: T [] = [];    // Cria uma matriz vazia do tipo T. 
+		  arrayOfT.push (argument);   // Push, agora arrayOfT = [argumento]. 
+		  return arrayOfT; 
+		} var arrayFromString = genericFunc <string> ( "beep" );
+		console
+
+		.log (arrayFromString [ 0 ]);         // "beep" 
+		console .log ( tipo de arrayFromString [ 0 ])    // String 
+
+		var arrayFromNumber = genericFunc ( 42 );
+		console .log (arrayFromNumber [ 0 ]);         // 42 
+		console .log ( typeof arrayFromNumber [ 0 ])    // número
+		__________________________________________________________________________________________________________________________
+
+
+
+8. Modules
+
+
+		O TypeScript introduz uma sintaxe para exportar e importar módulos, mas não pode manipular a fiação real entre os arquivos. Para ativar módulos externos, o TS depende de bibliotecas de terceiros: require.js para aplicativos de navegador e CommonJS para Node.js. Vamos dar uma olhada em um exemplo simples de módulos TypeScript com require.js:
+
+		Nós teremos dois arquivos. Um exporta uma função, o outro importa e chama::
+
+		______________________________________________________
+		exporter.ts
+			var sayHi = função (): void  {
+			     console .log ( "Olá!" ); 
+			} export = sayHi;
+
+		importador.ts
+			import sayHi = require ( './exporter' ); 
+			diga oi();
+		______________________________________________________
+
+		Agora precisamos baixar o require.js e incluí-lo em uma tag de script - http://www.typescriptlang.org/docs/handbook/modules.html . 
+		O último passo é compilar nossos dois arquivos .ts. Um parâmetro extra precisa ser adicionado para informar ao TypeScript que estamos construindo módulos para o require.js (também chamado de AMD), ao contrário dos do CommonJS.
+
+        ___________________________________
+			tsc --module amd * Ts
+		___________________________________
+
+
+
+9. Third-party Declaration Files
+
+
+		Ao usar uma biblioteca que foi originalmente projetada para JavaScript comum, precisamos aplicar um arquivo de declaração para tornar essa biblioteca compatível com o TypeScript. Um arquivo de declaração tem a extensão .d.ts e contém várias informações sobre a biblioteca e sua API.
+
+		http://definitelytyped.org/  >> types modules
+
+		https://github.com/typings/typings  >> typings
+
+
+
+10. Recursos futuros no TypeScript 3.0
+
+
+		Na linha de comando, execute o compilador do TypeScript:
+		>>> tsc greeter.ts
+		>>> tsc helloworld.ts
+		    // comando de criação de arquivos js
+
+
+
+
+unable to prepare context: unable to evaluate symlinks in Dockerfile path: GetFileAttributesEx C:\Users\renata.lopez\Documents\Projetos-Renata\Microservices\microservicesRest\my-first-service\Dockerfile: O sistema no pode encontrar o arquivo especificad0
+
+
+
