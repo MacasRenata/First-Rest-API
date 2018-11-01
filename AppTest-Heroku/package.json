@@ -1,14 +1,15 @@
 {
-  "name": "y",
+  "name": "AppTest-Heroku",
   "version": "1.0.0",
-  "description": "testJest",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Renata Maçãs",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "engines": {
-    "node": "10.1.0"
+  "dependencies": {
+    "foobar": "1.1.0"
   }
 }
