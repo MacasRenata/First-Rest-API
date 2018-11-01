@@ -10,6 +10,7 @@
   "author": "Renata Maçãs",
   "license": "ISC",
   "dependencies": {
+    "express": "4.16.4",
     "foobar": "1.1.0"
   }
 }
