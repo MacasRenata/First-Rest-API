@@ -1,14 +1,13 @@
-FROM node:8-alpine
+FROM risingstack/alpine:3.4-v6.9.4-4.2.0
 
-ENV NODE_ENV=production
+ENV PORT 3001
 
-RUN mkdir /app
-WORKDIR /app
+EXPOSE 3001
 
-COPY package.json .
-
-RUN npm install --production
+COPY package.json package.json
+RUN npm install
 
 COPY . .
+RUN npm run build
 
-CMD ["npm", "start"]
+CMD ["node", "dist/"]
