@@ -1,0 +1,30 @@
+// essa é a forma que um teste é escrito no framework jest
+//  porém todos os frameworks possuem forma semelhante
+
+// o jest nos diponibiliza uma função global `test` 
+//  onde passamos uma string que será a responsável por 
+//  descrever o que a unidade que estamos testando 
+//  irá realizar, no nosso caso a função que estamos
+//  testando deverá remover todos os espaços de uma string
+
+test("todos os espaços são removidos da string", () => {
+  // para manter nossos testes organizados é bom
+  //  isolar os inputs, outputs e o valor que
+  //  esperamos que o output receba após executado a função
+  
+  const input = "testes são bons"; // como vai entrar na função
+  const expected = "testessãobons"; // como deve sair da função
+
+  const output = removeSpaces(input); // resultado da função
+
+  // aqui é onde acontece a magia, verificamos se o
+  //  output realmente é igual ao valor esperado 
+  //  com o matcher `.toBe` que é basicamente um `===`
+  expect(output).toBe(expected);
+});
+
+// caso o output seja igual ao valor esperado 
+//  nosso teste irá passar e poderemos ver no console
+//  o verdinho sinalizando que nosso teste passou
+//  caso contrário ficará vermelho e terá uma explicação
+//  com o output que foi encontrado diferente do esperado
